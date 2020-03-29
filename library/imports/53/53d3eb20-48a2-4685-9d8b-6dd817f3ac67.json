@@ -1,0 +1,74 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "map.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "1c71f6e1": {
+      "__uuid__": "f6ae0747-6a90-4902-bfc4-72b6e532d5f9"
+    },
+    "2d68bc22": {
+      "__uuid__": "d40a3f49-7311-4345-b806-3280e3962b04"
+    },
+    "6d9216e7": {
+      "__uuid__": "7565fbfb-23de-48a4-b501-82a112fb387a"
+    },
+    "9c026d1e": {
+      "__uuid__": "947183bb-b4e7-401a-a8da-ae87fdedcffb"
+    },
+    "caoping1": {
+      "__uuid__": "7e2e71a8-2352-49dc-8a6f-b9877c10071d"
+    },
+    "caoping2": {
+      "__uuid__": "5801dcb7-48f3-413b-8ff6-b8b176216c7c"
+    },
+    "caoping3": {
+      "__uuid__": "5b5453e7-7ff9-4f5c-8d76-77b37ded0778"
+    },
+    "caoping4": {
+      "__uuid__": "baa3c061-978f-40ea-8619-ce7b032b570c"
+    },
+    "shitoulu1": {
+      "__uuid__": "3584244b-15cb-4a1c-8cf8-fd7d6b16ac8d"
+    },
+    "shitoulu2": {
+      "__uuid__": "dae19eb3-6428-437d-a2c1-e7a3c89ff348"
+    },
+    "shizi1": {
+      "__uuid__": "728ffae3-f5a9-46c8-99af-30c6dfe23ca6"
+    },
+    "tudi1": {
+      "__uuid__": "ccd086b1-02da-4a1a-b0b4-d1260066f919"
+    },
+    "xuedi": {
+      "__uuid__": "c28569cd-3f24-4cbd-9b39-c7a488945580"
+    },
+    "yanshi1": {
+      "__uuid__": "53f7d83f-b89f-4495-ae71-93f17a1a8f95"
+    },
+    "yanshi2": {
+      "__uuid__": "0943f0a1-7a5a-4c9b-ab27-bf648b01d359"
+    },
+    "zhuankuai": {
+      "__uuid__": "6d22bbcb-1bc5-4fa1-b06b-79307a55c0ce"
+    },
+    "zhuankuai2": {
+      "__uuid__": "ee983e8e-84d4-457e-a5a6-fadbe15efe76"
+    },
+    "zhuankuai3": {
+      "__uuid__": "8b01f255-5bc5-4755-9760-44096402fec2"
+    },
+    "zhuankuai4": {
+      "__uuid__": "cf4dfaa9-c24b-4cb5-afe8-193d5c1b7e3c"
+    },
+    "zhuankuai5": {
+      "__uuid__": "0cdf1c15-0465-48e5-8d50-dfadac6a25e4"
+    },
+    "zhuankuai6": {
+      "__uuid__": "9b3fc60e-8b13-4cd0-b90c-1062fd092af5"
+    },
+    "zhuankuai7": {
+      "__uuid__": "66791dcc-de16-41b6-89f8-8260bc8c307a"
+    }
+  }
+}

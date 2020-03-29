@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "davis_55_16",
+    "texture": "611450a3-eab5-4353-8840-2870a9992750",
+    "atlas": "39e2b13f-50c7-4e3d-9f8f-1ea049f7be56",
+    "rect": [
+      2,
+      77,
+      39,
+      73
+    ],
+    "offset": [
+      -7,
+      3
+    ],
+    "originalSize": [
+      81,
+      81
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

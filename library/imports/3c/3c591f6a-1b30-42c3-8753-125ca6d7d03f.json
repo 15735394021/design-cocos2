@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "house_zhong",
+    "texture": "d0d479e0-7bd0-4b9b-8bd7-0c8a158c1d25",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      2013,
+      1783
+    ],
+    "offset": [
+      -15.5,
+      130.5
+    ],
+    "originalSize": [
+      2048,
+      2048
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

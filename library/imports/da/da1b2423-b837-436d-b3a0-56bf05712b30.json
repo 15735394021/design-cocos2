@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "shandong1.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "20514": {
+      "__uuid__": "6faaae61-02dd-4cdf-8911-c2ee5f4f2550"
+    },
+    "20559": {
+      "__uuid__": "f3576dfb-0171-467a-8037-126f739e249b"
+    },
+    "20560": {
+      "__uuid__": "c238e6eb-daa1-4440-9fdd-8785b8218b99"
+    },
+    "20563": {
+      "__uuid__": "d6be03a4-a4b7-40dd-a28d-9fa9617e7045"
+    },
+    "20567": {
+      "__uuid__": "617537b2-05d4-4623-8921-1b4620bd93f2"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ku3",
+    "texture": "2ca90efa-3d1c-4c58-9781-0796184d8d98",
+    "atlas": "2f5a8047-39e5-486b-825d-0121a72a4fc0",
+    "rect": [
+      2,
+      1717,
+      320,
+      366
+    ],
+    "offset": [
+      0,
+      5
+    ],
+    "originalSize": [
+      320,
+      384
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

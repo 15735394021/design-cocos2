@@ -1,0 +1,32 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "house_zhong.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "1_4": {
+      "__uuid__": "1ece2264-4583-4183-8005-7be812b25bd1"
+    },
+    "3_1": {
+      "__uuid__": "3eb205d5-81f3-41c1-b2db-4cab1aea1bb5"
+    },
+    "3_2": {
+      "__uuid__": "88eb7b93-a3da-40cf-b1e3-6c97fa326913"
+    },
+    "3_3": {
+      "__uuid__": "e9bcb03e-8d25-4d41-a197-69ebca3c0c08"
+    },
+    "3_6": {
+      "__uuid__": "99c0b2fe-ecdb-4b5f-b1be-98784c331a38"
+    },
+    "3_7": {
+      "__uuid__": "1941b6c8-bbf8-4328-aeed-83dd62979426"
+    },
+    "3_8": {
+      "__uuid__": "9a7d3b52-43bc-4cb0-80e3-588b4291f19c"
+    },
+    "4_5": {
+      "__uuid__": "e857e06c-6c99-4494-9375-c9ea48092b5c"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "samurai_f_06",
+    "texture": "c7c6f652-40c2-4408-b929-b5f9822dffeb",
+    "atlas": "2fecff79-5420-413c-926c-ca00a8b395e3",
+    "rect": [
+      262,
+      48,
+      26,
+      42
+    ],
+    "offset": [
+      2,
+      -2
+    ],
+    "originalSize": [
+      32,
+      48
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
