@@ -1,0 +1,119 @@
+{
+  "version": "1.1.1",
+  "windows": {
+    "main": {
+      "main": true,
+      "url": "app://editor/index.html",
+      "windowType": "dockable",
+      "x": -8,
+      "y": -8,
+      "width": 1382,
+      "height": 754,
+      "layout": {
+        "children": [
+          {
+            "children": [
+              {
+                "active": 0,
+                "children": [
+                  "hierarchy"
+                ],
+                "height": 292,
+                "type": "panel",
+                "width": 284
+              },
+              {
+                "active": 0,
+                "children": [
+                  "assets"
+                ],
+                "height": 326,
+                "type": "panel",
+                "width": 284
+              }
+            ],
+            "height": 621,
+            "type": "dock-v",
+            "width": 284
+          },
+          {
+            "active": 0,
+            "children": [
+              "inspector",
+              "cocos-services"
+            ],
+            "height": 621,
+            "type": "panel",
+            "width": 304
+          },
+          {
+            "children": [
+              {
+                "active": 0,
+                "children": [
+                  "scene"
+                ],
+                "height": 352,
+                "type": "panel",
+                "width": 756
+              },
+              {
+                "active": 0,
+                "children": [
+                  "console",
+                  "timeline",
+                  "game-window"
+                ],
+                "height": 266,
+                "type": "panel",
+                "width": 756
+              }
+            ],
+            "height": 621,
+            "type": "dock-v",
+            "width": 756
+          }
+        ],
+        "type": "dock-h"
+      },
+      "panels": [
+        "hierarchy",
+        "assets",
+        "inspector",
+        "cocos-services",
+        "scene",
+        "console",
+        "timeline",
+        "game-window"
+      ]
+    }
+  },
+  "panels": {
+    "builder": {
+      "x": 340,
+      "y": 0,
+      "width": 670,
+      "height": 738
+    },
+    "project-settings": {
+      "x": 385,
+      "y": 90,
+      "width": 600,
+      "height": 564
+    },
+    "preferences": {
+      "x": 395,
+      "y": 90,
+      "width": 600,
+      "height": 564
+    }
+  },
+  "panelLabelWidth.preferences": null,
+  "panelLabelWidth": {
+    "preferences": null,
+    "inspector": null,
+    "builder": null
+  },
+  "panelLabelWidth.inspector": null,
+  "panelLabelWidth.builder": null
+}
