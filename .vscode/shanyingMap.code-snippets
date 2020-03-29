@@ -1,0 +1,306 @@
+{
+	// Place your dazao 工作区 snippets here$ Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description$ Add comma separated ids of the languages where the snippet is applicable in the scope field$ If scope 
+	// is left empty or omitted, the snippet gets applied to all languages$ The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted$ Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders$ 
+	// Placeholders with the same ids are connected$
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console$log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"Shanying Init": {
+		"scope": "javascript,typescript",
+		"prefix": "#Init",
+		"body": [
+			"Init=function(){",
+			"    $1",
+			"}"
+		],
+		"description": "闪影-地图可以运行"
+	},
+	"Shanying Loading": {
+		"scope": "javascript,typescript",
+		"prefix": "#Loading",
+		"body": [
+			"Loading=function(current,total){",
+			"    $1",
+			"}"
+		],
+		"description": "闪影-加载加高"
+	},
+	"Shanying onLoadSprite": {
+		"scope": "javascript,typescript",
+		"prefix": "#onLoadSprite",
+		"body": [
+			"onLoadSprite=function(node,name){",
+			"    $1",
+			"}"
+		],
+		"description": "闪影-图块被显示"
+	},
+	"Shanying onLoadYMovieClip": {
+		"scope": "javascript,typescript",
+		"prefix": "#onLoadYMovieClip",
+		"body": [
+			"onLoadYMovieClip=function(node,LayerName,bo){",
+			"    $1",
+			"}"
+		],
+		"description": "闪影-动画被显示"
+	},
+	"Shanying onLoadSpriteParent": {
+		"scope": "javascript,typescript",
+		"prefix": "#onLoadSpriteParent",
+		"body": [
+			"onLoadSpriteParent=function(node,LayerName,bo){",
+			"    $1",
+			"}"
+		],
+		"description": "闪影-图块组被显示"
+	},
+	"Shanying killYMovieClip": {
+		"scope": "javascript,typescript",
+		"prefix": "#killYMovieClip",
+		"body": [
+			"killYMovieClip=function(ymc,LayerName){",
+			"    $1",
+			"}"
+		],
+		"description": "闪影-动画被清除"
+	},
+	"Shanying killSprite": {
+		"scope": "javascript,typescript",
+		"prefix": "#killSprite",
+		"body": [
+			"killSprite=function(n,LayerName){",
+			"    $1",
+			"}"
+		],
+		"description": "闪影-图块被清除"
+	},
+	"Shanying killSpriteParent": {
+		"scope": "javascript,typescript",
+		"prefix": "#killSpriteParent",
+		"body": [
+			"killSpriteParent=function(n,LayerName){",
+			"    $1",
+			"}"
+		],
+		"description": "闪影-图块组被清除"
+	},
+	"Shanying setSpriteFrame": {
+		"scope": "javascript,typescript",
+		"prefix": "#setSpriteFrame",
+		"body": [
+			"setSpriteFrame('$1','$2',$3);"
+		],
+		"description": "闪影-替换贴图"
+	},
+	"Shanying getNodesByLocation": {
+		"scope": "javascript,typescript",
+		"prefix": "#getNodesByLocation",
+		"body": [
+			"getNodesByLocation('$1',$2,$3);"
+		],
+		"description": "闪影-通过坐标得到图块"
+	},
+	"Shanying getNodeParentByName": {
+		"scope": "javascript,typescript",
+		"prefix": "#getNodeParentByName",
+		"body": [
+			"getNodeParentByName($1);"
+		],
+		"description": "闪影-通过名字得到图块的地图父节点，但需要地图父节点必须在场景加载过，否则返回null。"
+	},
+	"Shanying getNodeParentBySprite": {
+		"scope": "javascript,typescript",
+		"prefix": "#getNodeParentBySprite",
+		"body": [
+			"getNodeParentBySprite($1);"
+		],
+		"description": "闪影-通过图块得到其地图父节点，如果图块没有地图父节点，则返回null，如果你确定该图块一定有地图父节点，也可以直接n.parent得到。"
+	},
+	"Shanying getTopNodeByLocation": {
+		"scope": "javascript,typescript",
+		"prefix": "#getTopNodeByLocation",
+		"body": [
+			"getTopNodeByLocation($1);"
+		],
+		"description": "闪影-通过坐标返回某块区域内的最顶部的Node，这里坐标并不是以实际像素进行匹配，而是和图层高宽行列有关。比如图层地形是100*乘100的，通过坐标得到，就是100*乘100的某行某列图块（注意：不管是地形图块，还是自由图块，都会占用一个或多个行列信息。）"
+	},
+	"Shanying getLayerRectFun": {
+		"scope": "javascript,typescript",
+		"prefix": "#getLayerRectFun",
+		"body": [
+			"getLayerRectFun('$1');"
+		],
+		"description": "闪影-获得图层距离中心点的实际像素区域，注意getLayerRectFun返回为正常坐标系。即Y坐标向下为正，向上为负。如果要改成CC坐标，只需将Y*=-1即可，其他不变。"
+	},
+	"Shanying getLayerNodeFun": {
+		"scope": "javascript,typescript",
+		"prefix": "#getLayerNodeFun",
+		"body": [
+			"getLayerNodeFun('$1');"
+		],
+		"description": "闪影-获得地图中的图层Node"
+	},
+	"Shanying addMapNode": {
+		"scope": "javascript,typescript",
+		"prefix": "#addMapNode",
+		"body": [
+			"addMapNode($1);"
+		],
+		"description": "闪影-向地图添加图块信息。注意：第一个参数的Node，并不是随意增加的Node，而是从地图取出带有特殊标记的Node。当Node增加成功时，实际是增加了一串地图信息，同时原Node会被销毁。"
+	},
+	"Shanying removeMapNode": {
+		"scope": "javascript,typescript",
+		"prefix": "#removeMapNode",
+		"body": [
+			"removeMapNode($1);"
+		],
+		"description": "闪影-清除地图信息。此方法只是清除该图块在地图中的显示信息，并不会摧毁图块Node，且该图块的其他信息也会被保留下来，必要时可以通过addMapNode方法，进行增加更改。但是，动画图块除外，因为被清除的动画图块，无法独立运行，所以一旦被清除，会将其摧毁。"
+	},
+	"Shanying killNodePool": {
+		"scope": "javascript,typescript",
+		"prefix": "#killNodePool",
+		"body": [
+			"killNodePool($1);"
+		],
+		"description": "闪影-销毁Node池，参数可以是时间，也可以是指定图块名。"
+	},
+	"Shanying removeAll": {
+		"scope": "javascript,typescript",
+		"prefix": "#removeAll",
+		"body": [
+			"removeAll($1);"
+		],
+		"description": "闪影-销毁所有"
+	},
+	"Shanying getTag": {
+		"scope": "javascript,typescript",
+		"prefix": "#getTag",
+		"body": [
+			"getTag('$1');"
+		],
+		"description": "闪影-返回在闪影中设计的一组标记"
+	},
+	"Shanying setMapLocation": {
+		"scope": "javascript,typescript",
+		"prefix": "#setMapLocation",
+		"body": [
+			"setMapLocation('$1');"
+		],
+		"description": "闪影-移动地图图块，参数1可以是图块Node，也可以是图块ID，但是建议用图块ID。"
+	},
+	"Shanying isShow": {
+		"scope": "javascript,typescript",
+		"prefix": "#isShow",
+		"body": [
+			"isShow();"
+		],
+		"description": "闪影-除了得到图块Node，用此方法，也可以判断图块ID是否在显示界面之中，如果不在会返回null。"
+	},
+	"Shanying setYMovieClipFrame": {
+		"scope": "javascript,typescript",
+		"prefix": "#setYMovieClipFrame",
+		"body": [
+			"setYMovieClipFrame();"
+		],
+		"description": "闪影-用于控制动画跳帧"
+	},
+	"Shanying getMapNodeObj": {
+		"scope": "javascript,typescript",
+		"prefix": "#getMapNodeObj",
+		"body": [
+			"getMapNodeObj();"
+		],
+		"description": "闪影地图API"
+	},
+	"Shanying getShadow": {
+		"scope": "javascript,typescript",
+		"prefix": "#getShadow",
+		"body": [
+			"getShadow();"
+		],
+		"description": "闪影-得到某个图块的替身。"
+	},
+	"Shanying scaleFun": {
+		"scope": "javascript,typescript",
+		"prefix": "#scaleFun",
+		"body": [
+			"scaleFun();"
+		],
+		"description": "闪影-根据屏幕的坐标，缩放游戏。"
+	},
+	"Shanying stop": {
+		"scope": "javascript,typescript",
+		"prefix": "#stop",
+		"body": [
+			"stop();"
+		],
+		"description": "闪影动画-动画暂停"
+	},
+	"Shanying play": {
+		"scope": "javascript,typescript",
+		"prefix": "#play",
+		"body": [
+			"play();"
+		],
+		"description": "闪影动画-动画播放"
+	},
+	"Shanying gotoAndStop": {
+		"scope": "javascript,typescript",
+		"prefix": "#gotoAndStop",
+		"body": [
+			"gotoAndStop($1);"
+		],
+		"description": "闪影动画-动画跳到指定帧并暂停"
+	},
+	"Shanying gotoAndPlay": {
+		"scope": "javascript,typescript",
+		"prefix": "#gotoAndPlay",
+		"body": [
+			"gotoAndPlay($1);"
+		],
+		"description": "闪影动画-动画跳到指定帧并播放"
+	},
+	"Shanying setEventFun": {
+		"scope": "javascript,typescript",
+		"prefix": "#setEventFun",
+		"body": [
+			"setEventFun($1);"
+		],
+		"description": "闪影动画-更改事件，前提是该帧上必须有事件"
+	},
+	"Shanying deleteAllEventFun": {
+		"scope": "javascript,typescript",
+		"prefix": "#deleteAllEventFun",
+		"body": [
+			"deleteAllEventFun($1);"
+		],
+		"description": "闪影动画-删除帧上所有事件。"
+	},
+	"Shanying deleteEventFun": {
+		"scope": "javascript,typescript",
+		"prefix": "#deleteEventFun",
+		"body": [
+			"deleteEventFun($1,$2);"
+		],
+		"description": "闪影-删除帧上某一事件"
+	},
+	"Shanying showAll": {
+		"scope": "javascript,typescript",
+		"prefix": "#showAll",
+		"body": [
+			"showAll();",
+		],
+		"description": "闪影-全部显示"
+	}
+}
