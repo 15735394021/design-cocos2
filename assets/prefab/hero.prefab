@@ -143,6 +143,18 @@
       },
       {
         "__uuid__": "899ea4dd-8612-41a8-81cc-9e048be7321d"
+      },
+      {
+        "__uuid__": "34311c7d-2568-4084-9005-cb76f00ea8a4"
+      },
+      {
+        "__uuid__": "9113da39-ba6d-487b-92dd-dd8a066b0d16"
+      },
+      {
+        "__uuid__": "71ba559c-4c49-4d17-be3d-f04126ecc21f"
+      },
+      {
+        "__uuid__": "e0769282-6440-45f6-9d16-1e36f992559a"
       }
     ],
     "playOnLoad": false,
@@ -255,7 +267,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "dce4107b-6140-44f7-80af-5cf7740fb78a"
     },
     "fileId": "c3KnSWcL5AVoV1Xw9hv8Q8",
     "sync": false
