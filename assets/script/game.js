@@ -1,5 +1,5 @@
 
-const requestUrl = "http://47.104.80.127:8080/archives/queryArchives"
+const requestUrl = "http://47.104.80.127:8080/"
 
 cc.Class({
     extends: cc.Component,
@@ -7,6 +7,10 @@ cc.Class({
     properties: {
         noticeLabel:{
             type:cc.Label,
+            default:null
+        },
+        myPackage:{
+            type:cc.Node,
             default:null
         }
 
@@ -21,29 +25,51 @@ cc.Class({
         // cc.director.getCollisionManager().enabledDebugDraw = true;//碰撞检测的边框显示
 
         window.game = this;
-        this.initialization();//游戏开始的数据初始化
+        // this.initialization();//游戏开始的数据初始化   网络请求
+        // this.queryHeroDetail();  //已经在heroDetail.js里调用
 
         //通知提示的label初始化时active为false;
         this.noticeLabel.active = false;
+        this.myPackage.active = false;//背包初始化不显示
+
     },
 
-    initialization(){   //进入游戏的个人数据初始化
+
+    initialization(){   //进入游戏的个人数据初始化,查背包
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
-                var response = xhr.responseText;
+                var response = JSON.parse(xhr.responseText);
                 console.log(response);
             }
         };
-        xhr.open("GET", requestUrl, true);
+        xhr.open("GET", requestUrl+"archives/beginGame?archivesId=1", true);
         xhr.send();
     },
 
-    notice(message,x,y){  //进入房间的提示“房间没有东西，按q退出”
+    queryHeroDetail(){
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+                var response = JSON.parse(xhr.responseText);
+                // console.log(response);
+            }
+        };
+        xhr.open("GET", requestUrl+"archives/queryArchives?userId=1", true);
+        xhr.send();
+    },
+
+    openAndClosePackage(pos){
+        this.myPackage.active = !this.myPackage.active;
+        if(this.myPackage.active){
+            this.myPackage.setPosition(pos);
+        }
+    },
+
+    notice(message,pos){  //进入房间的提示“房间没有东西，按q退出”
       this.node.getChildByName("map").opacity = 30;
       this.node.getChildByName("hero").opacity = 30;
-      var noticePos = cc.v2(x,y);
-      this.noticeLabel.node.setPosition(noticePos);
+      this.noticeLabel.node.setPosition(pos);
       this.noticeLabel.node.active = true;
       this.noticeLabel.overflow = cc.Label.Overflow.RESIZE_HEIGHT;//自适应高度。文字狱热多，会扩展高度
       this.noticeLabel.node._contentSize.width = 800;
@@ -61,9 +87,15 @@ cc.Class({
 
     },
 
-    start () {
-
+    switchMap(oldMap,newMap){
+        this.node.getChildByName(oldMap).active = false;
+        this.node.getChildByName(newMap).active = true;
     },
 
-    // update (dt) {},
+    start () {
+        this.baseUrl = "http://47.104.80.127:8080/";
+    },
+
+    update (dt) {
+    },
 });
