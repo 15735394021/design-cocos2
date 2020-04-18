@@ -168,7 +168,7 @@
       "array": [
         0,
         0,
-        236.42493523315176,
+        274.624774528206,
         0,
         0,
         0,
@@ -409,7 +409,7 @@
       "__uuid__": "2254d6b7-a7fd-4be8-aaac-2fc1f4f5e5e9"
     },
     "bg_audio": {
-      "__uuid__": "3a5f0d58-f11d-4aaa-af0f-f76857d013fc"
+      "__uuid__": "b32eeca0-a772-4ae1-9eab-3c3246dfcf01"
     },
     "ready_play": {
       "__id__": 9
@@ -3444,6 +3444,8 @@
     "myPackage": {
       "__id__": 49
     },
+    "openDoorAudio": null,
+    "openPackageAudio": null,
     "_id": "304jr4wcZK+IoN+zw5VJi7"
   },
   {

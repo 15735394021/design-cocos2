@@ -93,7 +93,7 @@ cc.Class({
 
       case 601:
         // game.switchMap("map3","map");//切换地图
-        cc.director.loadScene("game"); // this.groundJs.removeAll();
+        cc.director.loadScene("game1"); // this.groundJs.removeAll();
 
         break;
 

@@ -12,7 +12,15 @@ cc.Class({
         myPackage:{
             type:cc.Node,
             default:null
-        }
+        },
+        openDoorAudio:{
+            type:cc.AudioClip,
+            default:null
+        },
+        openPackageAudio:{
+            type:cc.AudioClip,
+            default:null
+        },
 
     },
 
@@ -61,6 +69,7 @@ cc.Class({
 
     openAndClosePackage(pos){
         this.myPackage.active = !this.myPackage.active;
+        cc.audioEngine.play(this.openPackageAudio,false,0.3);
         if(this.myPackage.active){
             this.myPackage.setPosition(pos);
         }
@@ -69,6 +78,7 @@ cc.Class({
     notice(message,pos){  //进入房间的提示“房间没有东西，按q退出”
       this.node.getChildByName("map").opacity = 30;
       this.node.getChildByName("hero").opacity = 30;
+      cc.audioEngine.play(this.openDoorAudio,false,0.3);
       // this.node.addComponent(cc.Label);
       //   let noticeLabel = this.node.getComponent(cc.Label);   //notice打算动态生成的，而不是在this.noticeLabel节点更改
       //       noticeLabel.node.setPosition(pos);
@@ -85,11 +95,8 @@ cc.Class({
       this.node.getChildByName("map").opacity = 255;
       this.node.getChildByName("hero").opacity = 255;
       // this.node.getComponent(cc.Label).destroy();
+        cc.audioEngine.play(this.openDoorAudio,false,0.3);
         this.noticeLabel.node.active = false;
-    },
-
-    openKnapsack(){   //打开背包
-
     },
 
     switchMap(oldMap,newMap){
@@ -102,5 +109,6 @@ cc.Class({
     },
 
     update (dt) {
+
     },
 });
