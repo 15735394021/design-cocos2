@@ -12,11 +12,23 @@
                         if (!nodeEnv) {__quick_compile_project__.registerModule(__filename, module);}
 require('./assets/migration/use_v2.1-2.2.1_cc.Toggle_event');
 require('./assets/script/BlackMap');
+require('./assets/script/archive');
+require('./assets/script/archivesList');
 require('./assets/script/game');
 require('./assets/script/ground');
 require('./assets/script/ground2');
+require('./assets/script/ground3');
+require('./assets/script/ground3Init');
 require('./assets/script/groundInit');
+require('./assets/script/heroModel');
 require('./assets/script/hero_go');
+require('./assets/script/loading');
+require('./assets/script/login');
+require('./assets/script/myDrug');
+require('./assets/script/myPackage');
+require('./assets/script/myProp');
+require('./assets/script/register');
+require('./assets/script/welcome');
 
                     }
                     if (nodeEnv) {

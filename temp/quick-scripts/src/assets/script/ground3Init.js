@@ -1,6 +1,6 @@
 "use strict";
-cc._RF.push(module, '88f4dRXWHdA2boc1EUQJNQp', 'groundInit');
-// script/groundInit.js
+cc._RF.push(module, 'fa61eIvIg9OdrxRbu6vr74S', 'ground3Init');
+// script/ground3Init.js
 
 "use strict";
 
@@ -27,11 +27,6 @@ cc.Class({
       type: cc.Label,
       "default": null
     },
-    flameParticle: {
-      //火焰粒子，用在村庄门口的开门关门效果
-      type: cc.ParticleSystem,
-      "default": null
-    },
     hero_pre: {
       type: cc.Prefab,
       "default": null
@@ -43,8 +38,8 @@ cc.Class({
   },
   onLoad: function onLoad() {
     var p = cc.director.getPhysicsManager();
-    p.enabled = true;
-    p.gravity = cc.v2(0, 0); // p.debugDrawFlags = true;  //显示出来碰撞边框，为了方便演示
+    p.enabled = true; // p.gravity = cc.v2(0,-320);
+    // p.debugDrawFlags = true;  //显示出来碰撞边框，为了方便演示
 
     cc.director.getCollisionManager().enabled = true; //检测碰撞
     // cc.director.getCollisionManager().enabledDebugDraw = true;//碰撞检测的边框显示
@@ -53,25 +48,14 @@ cc.Class({
     this.ready_progress.active = true;
     this.ready_play.getComponent(cc.ProgressBar).progress = 0;
     this.ready_progress.string = "地图正在初始化。。。";
-    this.groundJs = this.node.getComponent("ground2");
+    this.groundJs = this.node.getComponent("ground3");
 
     var _this = this;
 
-    _this.groundJs.Init = function () {// _this.groundJs.mapCameraNode = this.mycamrea;
+    _this.groundJs.Init = function () {// _this.groundJs.mapCameraNode = hero_go.mycamrea;
       // hero_go.node.parent = _this.groundJs.getLayerNodeFun("map");
+      // cc.director.getPhysicsManager().gravity = cc.v2(0,-320);
       // console.log(_this.groundJs.getLayerNodeFun("map").Rect1);
-    };
-
-    _this.groundJs.onLoadSpriteParent = function (n, LayerName, bo) {//onLoadSpriteParent(父节点：Node，图层名：String，是否第一次加载：bool)
-    };
-
-    _this.groundJs.onLoadYMovieClip = function (ymc, layerName, bo) {
-      //加载动画
-      if (ymc.name == "hk1") {
-        ymc.on("sound", function (event) {
-          cc.audioEngine.play(_this.hit_audio, false, 0.3);
-        });
-      }
     };
 
     this.groundJs.onLoadSprite = function (node, name) {
@@ -79,7 +63,7 @@ cc.Class({
       if (name == "map") {
         var tag0 = node.getComponent(cc.PolygonCollider);
 
-        if (tag0 != null && tag0.tag == 0 && node.getComponent(cc.RigidBody) == null && node.getComponent(cc.PhysicsPolygonCollider) == null) {
+        if (tag0 != null && tag0.tag == 0) {
           var body = node.addComponent(cc.RigidBody);
           body.type = cc.RigidBodyType.Static;
           var ps = tag0.points;
@@ -110,20 +94,14 @@ cc.Class({
         if (tag0 != null && tag0.tag == 0) {
           var body = node.getComponent(cc.RigidBody);
 
-          if (body != null) {
-            body.destroy();
+          if (body == null) {
+            return;
           }
 
-          var pp = node.getComponent(cc.PhysicsPolygonCollider);
-
-          if (pp != null) {
-            pp.destroy();
-          }
+          body.destroy();
+          node.getComponent(cc.PhysicsPolygonCollider).destroy();
         }
       }
-    };
-
-    this.groundJs.killSpriteParent = function (n, LayerName) {// 每次图块父节点从舞台上清除时调用。  killSpriteParent(父图块：Node，图层名：String)
     };
 
     this.groundJs.Loading = function (Loaded, Total) {
@@ -139,26 +117,21 @@ cc.Class({
       }
     };
   },
-  start: function start() {},
-  onEnable: function onEnable() {//active,enable从false变成true
-  },
-  onDisable: function onDisable() {//active,enable从true变成false
-  },
   generate: function generate() {
     //加载英雄预制体进入地图
     var heroNode = cc.instantiate(this.hero_pre);
     var heroNodeJs = heroNode.getComponent("hero_go");
-    heroNode.parent = this.groundJs.getLayerNodeFun("map"); // heroNode.setPosition(cc.v2(0,0));
+    heroNode.parent = this.groundJs.getLayerNodeFun("hero"); // heroNode.setPosition(cc.v2(0,0));
 
     heroNodeJs.mycamrea = this.mycamrea;
     heroNodeJs.groundJsNode = this.node;
-    heroNodeJs.map = "ground2";
+    heroNodeJs.map = "ground3";
     heroNodeJs.top = this.node.parent.getChildByName("top");
   },
-  closeDoor: function closeDoor(point1, point2) {//关门时的点起火焰粒子
+  start: function start() {
+    cc.director.getPhysicsManager().gravity = cc.v2(0, -320);
   },
   update: function update(dt) {
-    // console.log(dt)
     if (this.ready_play != null) {
       var progress = this.ready_play.getComponent(cc.ProgressBar).progress;
 

@@ -19,7 +19,36 @@ cc.Class({
   "extends": cc.Component,
   properties: {
     hit_audio: {
+      //击打时的音效
       type: cc.AudioClip,
+      "default": null
+    },
+    bg_audio: {
+      //背景音乐
+      type: cc.AudioClip,
+      "default": null
+    },
+    ready_play: {
+      //游戏加载中的进度条
+      type: cc.Node,
+      "default": null
+    },
+    ready_progress: {
+      //游戏加载中的当前进度label
+      type: cc.Label,
+      "default": null
+    },
+    flameParticle: {
+      //火焰粒子，用在村庄门口的开门关门效果
+      type: cc.ParticleSystem,
+      "default": null
+    },
+    hero_pre: {
+      type: cc.Prefab,
+      "default": null
+    },
+    mycamrea: {
+      type: cc.Node,
       "default": null
     }
   },
