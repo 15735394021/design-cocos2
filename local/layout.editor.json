@@ -18,23 +18,23 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 292,
+                "height": 317,
                 "type": "panel",
-                "width": 284
+                "width": 206.421875
               },
               {
                 "active": 0,
                 "children": [
                   "assets"
                 ],
-                "height": 326,
+                "height": 317,
                 "type": "panel",
-                "width": 284
+                "width": 206.421875
               }
             ],
-            "height": 621,
+            "height": 637,
             "type": "dock-v",
-            "width": 284
+            "width": 206.421875
           },
           {
             "active": 0,
@@ -42,9 +42,9 @@
               "inspector",
               "cocos-services"
             ],
-            "height": 621,
+            "height": 637,
             "type": "panel",
-            "width": 304
+            "width": 307.625
           },
           {
             "children": [
@@ -53,9 +53,9 @@
                 "children": [
                   "scene"
                 ],
-                "height": 352,
+                "height": 361.109375,
                 "type": "panel",
-                "width": 756
+                "width": 845.953125
               },
               {
                 "active": 0,
@@ -64,14 +64,14 @@
                   "timeline",
                   "game-window"
                 ],
-                "height": 266,
+                "height": 272.890625,
                 "type": "panel",
-                "width": 756
+                "width": 845.953125
               }
             ],
-            "height": 621,
+            "height": 637,
             "type": "dock-v",
-            "width": 756
+            "width": 845.953125
           }
         ],
         "type": "dock-h"
@@ -106,6 +106,12 @@
       "y": 90,
       "width": 600,
       "height": 564
+    },
+    "sprite-editor": {
+      "x": 425,
+      "y": 90,
+      "width": 516,
+      "height": 538
     }
   },
   "panelLabelWidth.preferences": null,
