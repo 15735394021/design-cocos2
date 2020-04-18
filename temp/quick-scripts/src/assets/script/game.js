@@ -15,14 +15,6 @@ cc.Class({
     myPackage: {
       type: cc.Node,
       "default": null
-    },
-    openDoorAudio: {
-      type: cc.AudioClip,
-      "default": null
-    },
-    openPackageAudio: {
-      type: cc.AudioClip,
-      "default": null
     }
   },
   onLoad: function onLoad() {
@@ -68,7 +60,6 @@ cc.Class({
   },
   openAndClosePackage: function openAndClosePackage(pos) {
     this.myPackage.active = !this.myPackage.active;
-    cc.audioEngine.play(this.openPackageAudio, false, 0.3);
 
     if (this.myPackage.active) {
       this.myPackage.setPosition(pos);
@@ -77,8 +68,7 @@ cc.Class({
   notice: function notice(message, pos) {
     //进入房间的提示“房间没有东西，按q退出”
     this.node.getChildByName("map").opacity = 30;
-    this.node.getChildByName("hero").opacity = 30;
-    cc.audioEngine.play(this.openDoorAudio, false, 0.3); // this.node.addComponent(cc.Label);
+    this.node.getChildByName("hero").opacity = 30; // this.node.addComponent(cc.Label);
     //   let noticeLabel = this.node.getComponent(cc.Label);   //notice打算动态生成的，而不是在this.noticeLabel节点更改
     //       noticeLabel.node.setPosition(pos);
     //   console.log(this.noticeLabel)
@@ -96,8 +86,9 @@ cc.Class({
     this.node.getChildByName("map").opacity = 255;
     this.node.getChildByName("hero").opacity = 255; // this.node.getComponent(cc.Label).destroy();
 
-    cc.audioEngine.play(this.openDoorAudio, false, 0.3);
     this.noticeLabel.node.active = false;
+  },
+  openKnapsack: function openKnapsack() {//打开背包
   },
   switchMap: function switchMap(oldMap, newMap) {
     this.node.getChildByName(oldMap).active = false;
