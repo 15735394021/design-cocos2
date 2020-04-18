@@ -8,7 +8,7 @@ var Input = {};
 cc.Class({
   "extends": cc.Component,
   properties: {
-    camrea: {
+    mycamrea: {
       type: cc.Node,
       "default": null
     },
@@ -86,14 +86,14 @@ cc.Class({
         break;
 
       case 501:
-        game.switchMap("map", "map3"); //切换地图
-        // this.groundJs.removeAll();
+        // game.switchMap("map","map3");//切换地图
+        cc.director.loadScene("game3"); // this.groundJs.removeAll();
 
         break;
 
       case 601:
-        game.switchMap("map3", "map"); //切换地图
-        // this.groundJs.removeAll();
+        // game.switchMap("map3","map");//切换地图
+        cc.director.loadScene("game"); // this.groundJs.removeAll();
 
         break;
 
@@ -184,6 +184,7 @@ cc.Class({
         break;
 
       case 66:
+        //打开或关闭背包
         this.playing = !this.playing;
         game.openAndClosePackage(this.node.getPosition());
         break;

@@ -69,18 +69,23 @@ cc.Class({
     notice(message,pos){  //进入房间的提示“房间没有东西，按q退出”
       this.node.getChildByName("map").opacity = 30;
       this.node.getChildByName("hero").opacity = 30;
-      this.noticeLabel.node.setPosition(pos);
-      this.noticeLabel.node.active = true;
-      this.noticeLabel.overflow = cc.Label.Overflow.RESIZE_HEIGHT;//自适应高度。文字狱热多，会扩展高度
+      // this.node.addComponent(cc.Label);
+      //   let noticeLabel = this.node.getComponent(cc.Label);   //notice打算动态生成的，而不是在this.noticeLabel节点更改
+      //       noticeLabel.node.setPosition(pos);
+      //   console.log(this.noticeLabel)
+      //   console.log(noticeLabel)
+        this.noticeLabel.node.setPosition(pos);
+        this.noticeLabel.node.active = true;
+      this.noticeLabel.overflow = cc.Label.Overflow.RESIZE_HEIGHT;//自适应高度。文字越多，会扩展高度
       this.noticeLabel.node._contentSize.width = 800;
       this.noticeLabel.string = message+"......  按'q'键退出";
     },
 
     noticeExit(){   //按q键退出的处理
-      this.noticeLabel.active = false;
       this.node.getChildByName("map").opacity = 255;
       this.node.getChildByName("hero").opacity = 255;
-      this.noticeLabel.node.active = false;
+      // this.node.getComponent(cc.Label).destroy();
+        this.noticeLabel.node.active = false;
     },
 
     openKnapsack(){   //打开背包

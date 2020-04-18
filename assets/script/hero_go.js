@@ -71,11 +71,13 @@ cc.Class({
                 game.notice("房间里什么都没有!!去别的房子看看吧",this.node.getPosition());
                 break;
             case 501:
-                game.switchMap("map","map3");//切换地图
+                // game.switchMap("map","map3");//切换地图
+                cc.director.loadScene("game3");
                 // this.groundJs.removeAll();
                 break;
             case 601:
-                game.switchMap("map3","map");//切换地图
+                // game.switchMap("map3","map");//切换地图
+                cc.director.loadScene("game");
                 // this.groundJs.removeAll();
                 break;
             case 602:
@@ -160,7 +162,7 @@ cc.Class({
                 game.noticeExit();
                 this.playing = true;
                 break;
-            case 66:
+            case 66:   //打开或关闭背包
                 this.playing = !this.playing;
                 game.openAndClosePackage(this.node.getPosition());
                 break;

@@ -87,8 +87,8 @@ cc.Class({
     var gold = parseInt(this.heroGold.getComponent(cc.Label).string);
     this.heroGold.getComponent(cc.Label).string = gold - num;
   },
-  start: function start() {} // update (dt) {},
-
+  start: function start() {},
+  update: function update(dt) {}
 });
 
 cc._RF.pop();
