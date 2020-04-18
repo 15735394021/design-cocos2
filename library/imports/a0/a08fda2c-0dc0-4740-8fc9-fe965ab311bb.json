@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "tower_JPD3",
+    "texture": "dd34e82f-94d5-432f-9bf8-c122a4521450",
+    "atlas": "6f666074-8000-472f-9464-73b66fa8c31a",
+    "rect": [
+      125,
+      298,
+      92,
+      92
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      92,
+      92
+    ],
+    "capInsets": [
+      44,
+      0,
+      45,
+      0
+    ]
+  }
+}
