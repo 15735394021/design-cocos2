@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.SceneAsset",
-    "_name": "game1",
+    "_name": "game",
     "_objFlags": 0,
     "_native": "",
     "scene": {
@@ -79,7 +79,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 77
+        "__id__": 76
       }
     ],
     "_prefab": null,
@@ -169,7 +169,7 @@
       "array": [
         0,
         0,
-        274.624774528206,
+        274.52497061568823,
         0,
         0,
         0,
@@ -265,9 +265,6 @@
       },
       {
         "__id__": 75
-      },
-      {
-        "__id__": 76
       }
     ],
     "_prefab": null,
@@ -789,7 +786,7 @@
     },
     "_spriteFrame": null,
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 90,
@@ -1658,10 +1655,8 @@
     "_fontSize": 20,
     "_lineHeight": 20,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "ea70659a-7591-4a41-8eeb-701bb9289f5d"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
@@ -1754,10 +1749,8 @@
     "_fontSize": 20,
     "_lineHeight": 20,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "ea70659a-7591-4a41-8eeb-701bb9289f5d"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
@@ -1850,10 +1843,8 @@
     "_fontSize": 20,
     "_lineHeight": 20,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "ea70659a-7591-4a41-8eeb-701bb9289f5d"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
@@ -1959,7 +1950,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 300,
+      "width": 20,
       "height": 15
     },
     "_anchorPoint": {
@@ -2102,7 +2093,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 90.84,
+      "width": 91.11,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2158,10 +2149,8 @@
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "ea70659a-7591-4a41-8eeb-701bb9289f5d"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
@@ -2198,7 +2187,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 28.68,
+      "width": 22.25,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2254,10 +2243,8 @@
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "ea70659a-7591-4a41-8eeb-701bb9289f5d"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
@@ -2294,7 +2281,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 14.34,
+      "width": 11.12,
       "height": 25.2
     },
     "_anchorPoint": {
@@ -2350,10 +2337,8 @@
     "_fontSize": 20,
     "_lineHeight": 20,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "ea70659a-7591-4a41-8eeb-701bb9289f5d"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
@@ -2961,10 +2946,8 @@
     "_fontSize": 20,
     "_lineHeight": 20,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "ea70659a-7591-4a41-8eeb-701bb9289f5d"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
@@ -3205,10 +3188,8 @@
     "_fontSize": 20,
     "_lineHeight": 20,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "ea70659a-7591-4a41-8eeb-701bb9289f5d"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
@@ -3465,24 +3446,6 @@
     "_id": "61h7S9+yVGnq7+dN72IIRL"
   },
   {
-    "__type__": "cc.AudioSource",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 5
-    },
-    "_enabled": true,
-    "_clip": {
-      "__uuid__": "3a5f0d58-f11d-4aaa-af0f-f76857d013fc"
-    },
-    "_volume": 0.1,
-    "_mute": false,
-    "_loop": false,
-    "playOnLoad": false,
-    "preload": false,
-    "_id": "a1jyOHj8hBToBbgvz0miZh"
-  },
-  {
     "__type__": "51293OX1ixHEqj08Raz1Et2",
     "_name": "",
     "_objFlags": 0,
@@ -3496,11 +3459,11 @@
     "myPackage": {
       "__id__": 50
     },
-    "openDoorAudio": {
-      "__uuid__": "a1b76d62-f0c1-4ca2-858f-5c3c879df354"
-    },
-    "openPackageAudio": {
+    "openAndPackageAudio": {
       "__uuid__": "f3fd1d7b-8c30-42e2-9a3f-18d9b4728bfc"
+    },
+    "openDoor": {
+      "__uuid__": "a1b76d62-f0c1-4ca2-858f-5c3c879df354"
     },
     "_id": "304jr4wcZK+IoN+zw5VJi7"
   },

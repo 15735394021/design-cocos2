@@ -15,6 +15,18 @@ cc.Class({
     myPackage: {
       type: cc.Node,
       "default": null
+    },
+    openAndPackageAudio: {
+      type: cc.AudioClip,
+      "default": null
+    },
+    openDoor: {
+      type: cc.AudioClip,
+      "default": null
+    },
+    hcs_pre: {
+      type: cc.Prefab,
+      "default": null
     }
   },
   onLoad: function onLoad() {
@@ -60,6 +72,7 @@ cc.Class({
   },
   openAndClosePackage: function openAndClosePackage(pos) {
     this.myPackage.active = !this.myPackage.active;
+    cc.audioEngine.play(this.openAndPackageAudio, false, 0.3);
 
     if (this.myPackage.active) {
       this.myPackage.setPosition(pos);
@@ -67,8 +80,9 @@ cc.Class({
   },
   notice: function notice(message, pos) {
     //进入房间的提示“房间没有东西，按q退出”
-    this.node.getChildByName("map").opacity = 30;
-    this.node.getChildByName("hero").opacity = 30; // this.node.addComponent(cc.Label);
+    this.node.getChildByName("map").opacity = 30; // this.node.getChildByName("hero").opacity = 30;
+
+    cc.audioEngine.play(this.openDoor, false, 0.3); // this.node.addComponent(cc.Label);
     //   let noticeLabel = this.node.getComponent(cc.Label);   //notice打算动态生成的，而不是在this.noticeLabel节点更改
     //       noticeLabel.node.setPosition(pos);
     //   console.log(this.noticeLabel)
@@ -83,21 +97,35 @@ cc.Class({
   },
   noticeExit: function noticeExit() {
     //按q键退出的处理
-    this.node.getChildByName("map").opacity = 255;
-    this.node.getChildByName("hero").opacity = 255; // this.node.getComponent(cc.Label).destroy();
+    cc.audioEngine.play(this.openDoor, false, 0.3);
+    this.node.getChildByName("map").opacity = 255; // this.node.getChildByName("hero").opacity = 255;
+    // this.node.getComponent(cc.Label).destroy();
 
     this.noticeLabel.node.active = false;
   },
   openKnapsack: function openKnapsack() {//打开背包
   },
-  switchMap: function switchMap(oldMap, newMap) {
-    this.node.getChildByName(oldMap).active = false;
-    this.node.getChildByName(newMap).active = true;
-  },
   start: function start() {
-    this.baseUrl = "http://47.104.80.127:8080/";
+    if (cc.sys.localStorage.getItem("userId") == null) {
+      cc.director.loadScene("welcome");
+    }
+
+    if (cc.sys.localStorage.getItem("checkPoint") == null) {
+      cc.director.loadScene("archives");
+    }
   },
-  update: function update(dt) {}
+  loadNewScene: function loadNewScene(scene, pos) {
+    //在这里加传送的特效,预加载新地图，节省loading时间
+    cc.director.preloadScene(scene);
+    var timer1 = window.setTimeout(function () {
+      cc.director.loadScene(scene);
+    }, 3000);
+    var herocsNode = cc.instantiate(this.hcs_pre);
+    herocsNode.parent = this.node;
+    herocsNode.setPosition(pos);
+  } // update (dt) {
+  // },
+
 });
 
 cc._RF.pop();

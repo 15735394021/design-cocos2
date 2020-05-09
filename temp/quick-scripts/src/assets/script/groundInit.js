@@ -36,7 +36,19 @@ cc.Class({
       type: cc.Prefab,
       "default": null
     },
+    guai1_pre: {
+      type: cc.Prefab,
+      "default": null
+    },
+    topNode: {
+      type: cc.Node,
+      "default": null
+    },
     mycamrea: {
+      type: cc.Node,
+      "default": null
+    },
+    hero: {
       type: cc.Node,
       "default": null
     }
@@ -57,9 +69,9 @@ cc.Class({
 
     var _this = this;
 
-    _this.groundJs.Init = function () {// _this.groundJs.mapCameraNode = this.mycamrea;
-      // hero_go.node.parent = _this.groundJs.getLayerNodeFun("map");
-      // console.log(_this.groundJs.getLayerNodeFun("map").Rect1);
+    _this.groundJs.Init = function () {
+      // _this.groundJs.mapCameraNode = this.mycamrea;
+      _this.hero.parent = _this.groundJs.getLayerNodeFun("map"); // console.log(_this.groundJs.getLayerNodeFun("map").Rect1);
     };
 
     _this.groundJs.onLoadSpriteParent = function (n, LayerName, bo) {//onLoadSpriteParent(父节点：Node，图层名：String，是否第一次加载：bool)
@@ -99,7 +111,16 @@ cc.Class({
 
           collider.apply();
         }
-      }
+      } // if(name == "ground"){
+      //     let guai = node.g101;
+      //     if(guai){
+      //         console.log(guai)
+      //     }
+      // let guaiNode = cc.instantiate(this.guai1_pre);
+      // guaiNode.parent = _this.groundJs.getLayerNodeFun("map");
+      // guaiNode.setPosition(guai);
+      // }
+
     };
 
     this.groundJs.killSprite = function (node, name) {
@@ -140,6 +161,32 @@ cc.Class({
     };
   },
   start: function start() {},
+  huaiwu1Init: function huaiwu1Init() {
+    var guai1 = this.groundJs.getLayerNodeFun("map").g101;
+    this.initG1(guai1);
+    var guai2 = this.groundJs.getLayerNodeFun("map").g102;
+    this.initG1(guai2);
+    var guai3 = this.groundJs.getLayerNodeFun("map").g103;
+    this.initG1(guai3);
+    var guai4 = this.groundJs.getLayerNodeFun("map").g104;
+    this.initG1(guai4);
+    var guai5 = this.groundJs.getLayerNodeFun("map").g105;
+    this.initG1(guai5);
+    var guai6 = this.groundJs.getLayerNodeFun("map").g106;
+    this.initG1(guai6);
+    var guai7 = this.groundJs.getLayerNodeFun("map").g107;
+    this.initG1(guai7);
+    var guai8 = this.groundJs.getLayerNodeFun("map").g108;
+    this.initG1(guai8);
+    var guai9 = this.groundJs.getLayerNodeFun("map").g109;
+    this.initG1(guai9);
+  },
+  initG1: function initG1(guai) {
+    //初始化史莱姆
+    var guaiNode = cc.instantiate(this.guai1_pre);
+    guaiNode.parent = this.groundJs.getLayerNodeFun("map");
+    guaiNode.setPosition(guai);
+  },
   onEnable: function onEnable() {//active,enable从false变成true
   },
   onDisable: function onDisable() {//active,enable从true变成false
@@ -148,17 +195,19 @@ cc.Class({
     //加载英雄预制体进入地图
     var heroNode = cc.instantiate(this.hero_pre);
     var heroNodeJs = heroNode.getComponent("hero_go");
-    heroNode.parent = this.groundJs.getLayerNodeFun("map"); // heroNode.setPosition(cc.v2(0,0));
-
+    heroNode.parent = this.groundJs.getLayerNodeFun("map");
     heroNodeJs.mycamrea = this.mycamrea;
     heroNodeJs.groundJsNode = this.node;
     heroNodeJs.map = "ground2";
-    heroNodeJs.top = this.node.parent.getChildByName("top");
+    this.initHero = true;
+    this.topPosheight = this.topNode.getPosition().y - heroGo.node.getPosition().y; //界面顶部的top信息，等级，经验，头像等
   },
   closeDoor: function closeDoor(point1, point2) {//关门时的点起火焰粒子
   },
+  onDestroy: function onDestroy() {
+    cc.audioEngine.stopAllEffects();
+  },
   update: function update(dt) {
-    // console.log(dt)
     if (this.ready_play != null) {
       var progress = this.ready_play.getComponent(cc.ProgressBar).progress;
 
@@ -167,13 +216,39 @@ cc.Class({
         this.ready_play.getComponent(cc.ProgressBar).progress = progress;
 
         if (this.ready_play.getComponent(cc.ProgressBar).progress >= 1 && this.ready_play.getComponent(cc.ProgressBar).progress <= 1.02) {
-          this.ready_play.active = false;
-          this.ready_progress.active = false; // this.node.getChildByName("ready_play").destroy();
-
+          this.ready_play.destroy();
+          this.ready_play = null;
           cc.audioEngine.play(this.bg_audio, true, 0.3);
-          this.generate(); // this.node.getChildByName("hero").active = true;
+          this.generate();
+          this.huaiwu1Init();
         }
       }
+    }
+
+    if (this.initHero) {
+      var viewX = heroGo.node.x;
+      var viewY = heroGo.node.y;
+
+      if (viewX <= -1850) {
+        viewX = -1850;
+      }
+
+      if (viewX >= 2077) {
+        viewX = 2077;
+      }
+
+      if (viewY >= 1130) {
+        viewY = 1130;
+      }
+
+      if (viewY <= -3160) {
+        viewY = -3160;
+      }
+
+      this.mycamrea.x = viewX;
+      this.mycamrea.y = viewY;
+      var pp = new cc.v2(viewX, viewY + this.topPosheight);
+      this.topNode.setPosition(pp);
     }
   }
 });

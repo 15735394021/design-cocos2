@@ -42,10 +42,43 @@
             }
           }
         ]
+      },
+      "cc.BoxCollider": {
+        "size": [
+          {
+            "frame": 0.1,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 70,
+              "height": 60
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 0,
+              "height": 0
+            }
+          }
+        ]
       }
     }
   },
   "events": [
+    {
+      "frame": 0.2,
+      "func": "kit_start",
+      "params": []
+    },
     {
       "frame": 0.4,
       "func": "kit_end",

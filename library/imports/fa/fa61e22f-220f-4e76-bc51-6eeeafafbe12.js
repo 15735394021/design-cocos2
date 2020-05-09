@@ -31,7 +31,19 @@ cc.Class({
       type: cc.Prefab,
       "default": null
     },
+    guai1_pre: {
+      type: cc.Prefab,
+      "default": null
+    },
+    topNode: {
+      type: cc.Node,
+      "default": null
+    },
     mycamrea: {
+      type: cc.Node,
+      "default": null
+    },
+    hero: {
       type: cc.Node,
       "default": null
     }
@@ -52,9 +64,9 @@ cc.Class({
 
     var _this = this;
 
-    _this.groundJs.Init = function () {// _this.groundJs.mapCameraNode = hero_go.mycamrea;
-      // hero_go.node.parent = _this.groundJs.getLayerNodeFun("map");
-      // cc.director.getPhysicsManager().gravity = cc.v2(0,-320);
+    _this.groundJs.Init = function () {
+      // _this.groundJs.mapCameraNode = hero_go.mycamrea;
+      _this.hero.parent = _this.groundJs.getLayerNodeFun("map"); // cc.director.getPhysicsManager().gravity = cc.v2(0,-320);
       // console.log(_this.groundJs.getLayerNodeFun("map").Rect1);
     };
 
@@ -82,6 +94,21 @@ cc.Class({
           }
 
           collider.apply();
+        }
+
+        var tag1 = node.getComponent(cc.BoxCollider);
+
+        if (tag1 != null && tag1.tag == 21) {
+          var _body = node.addComponent(cc.RigidBody);
+
+          _body.type = cc.RigidBodyType.Static;
+
+          var _collider = node.addComponent(cc.PhysicsBoxCollider);
+
+          _collider.offset = new cc.v2(0.5, 0);
+          _collider.size.height = 10;
+
+          _collider.apply();
         }
       }
     };
@@ -117,19 +144,34 @@ cc.Class({
       }
     };
   },
+  onDestroy: function onDestroy() {
+    cc.audioEngine.stopAllEffects();
+  },
   generate: function generate() {
     //加载英雄预制体进入地图
     var heroNode = cc.instantiate(this.hero_pre);
     var heroNodeJs = heroNode.getComponent("hero_go");
-    heroNode.parent = this.groundJs.getLayerNodeFun("hero"); // heroNode.setPosition(cc.v2(0,0));
-
+    heroNode.parent = this.groundJs.getLayerNodeFun("hero");
     heroNodeJs.mycamrea = this.mycamrea;
     heroNodeJs.groundJsNode = this.node;
     heroNodeJs.map = "ground3";
-    heroNodeJs.top = this.node.parent.getChildByName("top");
+    this.initHero = true;
+    this.topPosheight = this.topNode.getPosition().y - heroGo.node.getPosition().y; //界面顶部的top信息，等级，经验，头像等
   },
   start: function start() {
     cc.director.getPhysicsManager().gravity = cc.v2(0, -320);
+  },
+  huaiwu1Init: function huaiwu1Init() {
+    var guai1 = this.groundJs.getLayerNodeFun("map").g401;
+    this.initG1(guai1);
+    var guai2 = this.groundJs.getLayerNodeFun("map").g402;
+    this.initG1(guai2);
+  },
+  initG1: function initG1(guai) {
+    //初始化地刺
+    var guaiNode = cc.instantiate(this.guai1_pre);
+    guaiNode.parent = this.groundJs.getLayerNodeFun("hero");
+    guaiNode.setPosition(guai);
   },
   update: function update(dt) {
     if (this.ready_play != null) {
@@ -140,13 +182,41 @@ cc.Class({
         this.ready_play.getComponent(cc.ProgressBar).progress = progress;
 
         if (this.ready_play.getComponent(cc.ProgressBar).progress >= 1 && this.ready_play.getComponent(cc.ProgressBar).progress <= 1.02) {
-          this.ready_play.active = false;
-          this.ready_progress.active = false; // this.node.getChildByName("ready_play").destroy();
-
+          // this.ready_play.active = false;
+          // this.ready_progress.active = false;
+          this.ready_play.destroy();
+          this.ready_play = null;
           cc.audioEngine.play(this.bg_audio, true, 0.3);
-          this.generate(); // this.node.getChildByName("hero").active = true;
+          this.generate();
+          this.huaiwu1Init(); // this.node.getChildByName("hero").active = true;
         }
       }
+    }
+
+    if (this.initHero) {
+      var viewX = heroGo.node.x;
+      var viewY = heroGo.node.y;
+
+      if (viewX <= 300) {
+        viewX = 300;
+      }
+
+      if (viewX >= 4150) {
+        viewX = 4150;
+      }
+
+      if (viewY >= -100) {
+        viewY = -100;
+      }
+
+      if (viewY <= -4660) {
+        viewY = -4660;
+      }
+
+      this.mycamrea.x = viewX;
+      this.mycamrea.y = viewY;
+      var pp = new cc.v2(viewX, viewY + this.topPosheight);
+      this.topNode.setPosition(pp);
     }
   }
 });

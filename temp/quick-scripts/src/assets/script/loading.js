@@ -26,7 +26,11 @@ cc.Class({
         this._progressChange();
       }
     },
-    m_ProImage: cc.Node
+    m_ProImage: cc.Node,
+    run_load: {
+      type: cc.Node,
+      "default": null
+    }
   },
   ctor: function ctor() {
     this.m_progressIng = false;
@@ -56,6 +60,8 @@ cc.Class({
   start: function start() {},
   update: function update(dt) {
     if (this.m_progressIng) {
+      this.run_load.x = -390 + this.m_ProImage.width;
+
       if (this.m_ProImage.width < this.m_SetWidth) {
         this.m_ProImage.width += dt * this.m_Speed;
       }

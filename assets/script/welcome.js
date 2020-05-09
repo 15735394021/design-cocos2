@@ -12,12 +12,9 @@ cc.Class({
         m_LoginButton:[cc.Node],
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
     onLoad () {
 
         window.g_welcome = this
-
         this.m_Loading = cc.instantiate(this.m_LoadingPrefab)
         this.m_BackGround.addChild(this.m_Loading)
         this.m_Loading.y = -290
@@ -25,9 +22,9 @@ cc.Class({
         this.m_Loading.setProgress(1)
         var self = this
         this.m_Loading.finishCallBack = function(){
-            this.m_Loading.node.active = false
-            self.m_Logo.active = false
-            this.m_LoginBg.active = true
+            this.m_Loading.node.active = false;
+            self.m_Logo.active = false;
+            this.m_LoginBg.active = true;
         }.bind(this)
 
     },
@@ -56,10 +53,15 @@ cc.Class({
         this.m_RegisterView.show()
     },
     onText:function(){
-        this.m_LoginButton[0].zIndex = 100
+        this.m_LoginButton[0].zIndex = 100;
     },
-    start () {
-
+start () {
+        if(cc.sys.localStorage.getItem("checkPoint") != null && cc.sys.localStorage.getItem("userId") != null && cc.sys.localStorage.getItem("archivesId") != null){
+            cc.director.loadScene("game"+cc.sys.localStorage.getItem("checkPoint"));
+        }
+        // if(cc.sys.localStorage.getItem("userId") != null){
+        //     cc.director.loadScene("archives");
+        // }
     },
 
     update (dt) {

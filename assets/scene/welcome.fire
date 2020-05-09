@@ -78,13 +78,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 38
-      },
-      {
         "__id__": 39
       },
       {
         "__id__": 40
+      },
+      {
+        "__id__": 41
       }
     ],
     "_prefab": null,
@@ -174,7 +174,7 @@
       "array": [
         0,
         0,
-        274.624774528206,
+        623.5382907247958,
         0,
         0,
         0,
@@ -252,6 +252,9 @@
     "_components": [
       {
         "__id__": 37
+      },
+      {
+        "__id__": 38
       }
     ],
     "_prefab": null,
@@ -414,7 +417,7 @@
         "__id__": 28
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [],
     "_prefab": null,
     "_opacity": 255,
@@ -476,7 +479,7 @@
         "__id__": 10
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 17
@@ -1642,8 +1645,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "游客登录",
-    "_N$string": "游客登录",
+    "_string": "制作人员",
+    "_N$string": "制作人员",
     "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": false,
@@ -1738,8 +1741,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "游客登录",
-    "_N$string": "游客登录",
+    "_string": "制作人员",
+    "_N$string": "制作人员",
     "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": false,
@@ -1934,6 +1937,24 @@
     "_isTrimmedMode": true,
     "_atlas": null,
     "_id": "f3lzcwBqRLC5HkoI3p0PCR"
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 5
+    },
+    "_enabled": true,
+    "_clip": {
+      "__uuid__": "a015b03e-81bf-46ef-b74a-ba03a417dc85"
+    },
+    "_volume": 0.3,
+    "_mute": false,
+    "_loop": true,
+    "playOnLoad": true,
+    "preload": false,
+    "_id": "86ai9KZnpOqIb/xkqB9ilo"
   },
   {
     "__type__": "cc.Canvas",

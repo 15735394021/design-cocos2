@@ -20,7 +20,7 @@
                 ],
                 "height": 317,
                 "type": "panel",
-                "width": 206.421875
+                "width": 323.8125
               },
               {
                 "active": 0,
@@ -29,12 +29,12 @@
                 ],
                 "height": 317,
                 "type": "panel",
-                "width": 206.421875
+                "width": 323.8125
               }
             ],
             "height": 637,
             "type": "dock-v",
-            "width": 206.421875
+            "width": 323.8125
           },
           {
             "active": 0,
@@ -44,7 +44,7 @@
             ],
             "height": 637,
             "type": "panel",
-            "width": 307.625
+            "width": 307.609375
           },
           {
             "children": [
@@ -55,10 +55,10 @@
                 ],
                 "height": 361.109375,
                 "type": "panel",
-                "width": 845.953125
+                "width": 728.5625
               },
               {
-                "active": 0,
+                "active": 1,
                 "children": [
                   "console",
                   "timeline",
@@ -66,12 +66,12 @@
                 ],
                 "height": 272.890625,
                 "type": "panel",
-                "width": 845.953125
+                "width": 728.5625
               }
             ],
             "height": 637,
             "type": "dock-v",
-            "width": 845.953125
+            "width": 728.5625
           }
         ],
         "type": "dock-h"
@@ -86,7 +86,8 @@
         "timeline",
         "game-window"
       ]
-    }
+    },
+    "worker": {}
   },
   "panels": {
     "builder": {

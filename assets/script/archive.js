@@ -2,6 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        archivesId:null,
         createTime:null,
         archivesName:null,
         grade:null,
@@ -30,8 +31,9 @@ cc.Class({
         }, this);
 
         this.node.on(cc.Node.EventType.MOUSE_DOWN, function (event) {  //鼠标点击,开始该档案的剧情，进入游戏场景
-            console.log(this.checkPoint)
-            cc.director.loadScene("game1");
+            cc.sys.localStorage.setItem("checkPoint",this.checkPoint);
+            cc.sys.localStorage.setItem("archivesId",this.archivesId);
+            cc.director.loadScene("game"+this.checkPoint);
         }, this);
 
         var self = this;

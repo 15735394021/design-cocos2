@@ -13,14 +13,22 @@ cc.Class({
     }
   },
   onLoad: function onLoad() {
-    this.baseUrl = "http://47.104.80.127:8080/";
-    this.queryArchives();
+    this.baseUrl = cc.sys.localStorage.getItem("baseUrl");
+
+    if (this.baseUrl == null) {
+      cc.director.loadScene("welcome");
+    }
+
     this.userId = cc.sys.localStorage.getItem("userId");
 
     if (this.userId == null) {
-      this.userId = 1;
+      cc.director.loadScene("welcome");
     }
 
+    var self = this;
+    var timer1 = window.setTimeout(function () {
+      self.queryArchives();
+    }, 500);
     this.node.height = 0; //初始化时设置档案纪录的content高度为0，之后每创建一行高度再增加
   },
   queryArchives: function queryArchives() {
@@ -35,10 +43,10 @@ cc.Class({
           this.createArchivesList(data);
         }
       }
-    }.bind(this); // xhr.open("GET", this.baseUrl+"archives/queryArchives?userId="+this.userId, true);
+    }.bind(this);
 
-
-    xhr.open("GET", this.baseUrl + "archives/queryArchives?userId=1", true);
+    console.log(this.baseUrl + "archives/queryArchives?userId=" + this.userId);
+    xhr.open("GET", this.baseUrl + "archives/queryArchives?userId=" + this.userId, true);
     xhr.send();
   },
   createArchivesList: function createArchivesList(data) {
@@ -46,6 +54,7 @@ cc.Class({
       this.node.height += 80;
       var archivesNode = cc.instantiate(this.archivesPre);
       var archivesJs = archivesNode.getComponent("archive");
+      archivesJs.archivesId = data[i].archivesId;
       archivesJs.createTime = data[i].ts;
       archivesJs.archivesName = data[i].archivesName;
       archivesJs.grade = data[i].userGrade;
@@ -57,8 +66,15 @@ cc.Class({
       archivesNode.setPosition(cc.v2(0, -40 - 80 * i));
     }
   },
-  start: function start() {} // update (dt) {},
+  start: function start() {
+    if (cc.sys.localStorage.getItem("checkPoint") != null && cc.sys.localStorage.getItem("archivesId")) {
+      cc.director.loadScene("game" + cc.sys.localStorage.getItem("checkPoint"));
+    }
 
+    if (cc.sys.localStorage.getItem("userId") == null) {
+      cc.director.loadScene("welcome");
+    }
+  }
 });
 
 cc._RF.pop();

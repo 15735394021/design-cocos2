@@ -5,6 +5,11 @@ cc._RF.push(module, '06c69/yZBZMrKZIrO4yVjGA', 'hero_go');
 "use strict";
 
 var Input = {};
+var State = {
+  stand: 1,
+  attack: 2,
+  noPlay: 3
+};
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -18,32 +23,29 @@ cc.Class({
     },
     map: null,
     heroPos: null,
-    top: {
-      type: cc.Node,
+    kit_Audio: {
+      type: cc.AudioClip,
       "default": null
     }
   },
   onLoad: function onLoad() {
+    window.heroGo = this;
+
+    for (var i = 0; i < Input.length; i++) {
+      Input[i] = 0;
+    }
+
     var _this = this;
 
-    _this.rect = null;
-    _this.fagPoint = null; //设置相机等属性，以及加入的map地图node
-    // if(this.camrea == null){
-    //
-    // }
-    // if(this.groundJsNode == null){
-    //
-    // }
-    //人物的基本属性，速度，方向，重力
+    _this.rect = null; //人物的基本属性，速度，方向，重力
 
     this.playing = true; //是否正在游戏中还是在查看背包，查看别的信息时角色不能移动
 
     this.walk = false;
     this.kit = false;
-    this._speed = 200;
+    this.jump = false;
     this._speed1 = 200;
     this._speed2 = 300;
-    this._kiting = false;
 
     if (this.heroPos != null) {
       this.node.setPosition(this.heroPos);
@@ -51,10 +53,14 @@ cc.Class({
       this.node.setPosition(cc.v2(0, 0)); //初始位置
     }
 
-    this.state = '';
+    this.heroState = State.stand;
+    this.anima = "hero_idle";
+    this._speed = 200;
     this.sp = cc.v2(0, 0); //角色当前移动的方向
 
-    this.heroAnim = this.node.getComponent(cc.Animation); //注册事件监听
+    this.heroAnim = this.node.getComponent(cc.Animation);
+    this.combo = 0; //是否处于连击状态
+    //注册事件监听
 
     if (cc.director.getPhysicsManager().gravity.y == 0) {
       //未开启重力的键盘监听，没有自由落体
@@ -71,62 +77,47 @@ cc.Class({
       cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.on_key_up_1, this); //向系统注册键盘抬起事件
     }
   },
-  onCollisionEnter: function onCollisionEnter(other, self) {
-    //碰撞开始
-    switch (other.tag) {
-      case 1001:
-        other.node.gotoAndStop(other.node.currentFrame == 1 ? 5 : 1);
-        this.groundJs.setYMovieClipFrame(this.groundJs.getTag("a1001"), other.node.currentFrame, false); //setYMovieClipFrame方法是播放制定动画的帧，第一个参数为动画标记，第二个是帧数，第三个是是播放还是跳到该帧就停止
+  systemEventOff: function systemEventOff() {
+    //注销键盘监听事件
+    cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.on_key_down_1, this); //向系统注册键盘按下事件
 
-        break;
+    cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.on_key_up_1, this); //向系统注册键盘抬起事件
 
-      case 300:
-        this.playing = false;
-        game.notice("房间里什么都没有!!去别的房子看看吧", this.node.getPosition());
-        break;
+    cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.on_key_down, this); //向系统注册键盘按下事件
 
-      case 501:
-        // game.switchMap("map","map3");//切换地图
-        cc.director.loadScene("game3"); // this.groundJs.removeAll();
-
-        break;
-
-      case 601:
-        // game.switchMap("map3","map");//切换地图
-        cc.director.loadScene("game"); // this.groundJs.removeAll();
-
-        break;
-
-      case 602:
-        this.node.setPosition(this.groundJs.getLayerNodeFun("map").p602);
-        break;
-
-      case 603:
-        this.node.setPosition(this.groundJs.getLayerNodeFun("map").p603);
-        break;
-
-      case 604:
-        this.node.setPosition(this.groundJs.getLayerNodeFun("map").p604);
-        break;
-    }
-  },
-  onCollisionStay: function onCollisionStay(other, self) {//碰撞持续
+    cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.on_key_up, this); //向系统注册键盘抬起事件
   },
   kit_end: function kit_end() {
-    this._kiting = false;
-    this.heroAnim.play(this.state);
+    this.heroState = State.stand; // this.combo = (this.combo + 1) % 3;
   },
-  setState: function setState(state) {
-    if (this.state == state) return;
-    this.state = state;
-    if (this._kiting) return;
-    this.heroAnim.play(this.state);
+  kit_start: function kit_start() {
+    cc.audioEngine.play(this.kit_Audio, false, 0.3);
   },
-  hero_stop: function hero_stop() {
-    this.heroAnim.stop(this.state);
+  setState: function setState(anima) {
+    if (this.anima == anima) return;
+    this.anima = anima;
+    this.heroAnim.play(this.anima);
   },
   on_player_jump: function on_player_jump() {
     //有自由落体时的跳跃
+    this.jump = true;
+    var v = this.node.getComponent(cc.RigidBody).linearVelocity;
+
+    if (v.y == 0) {
+      this.jump = false;
+    }
+
+    if (this.jump) {
+      return;
+    }
+
+    if (this.input_control == -1) {
+      this.heroAnim.stop("hero_left");
+    } else if (this.input_control == 1) {
+      this.heroAnim.stop("hero_right");
+    }
+
+    this.direction = 0;
     var v = this.node.getComponent(cc.RigidBody).linearVelocity;
     v.y = 800;
     this.node.getComponent(cc.RigidBody).linearVelocity = v;
@@ -135,8 +126,30 @@ cc.Class({
     //有自由落体时的行走
     var v = this.node.getComponent(cc.RigidBody).linearVelocity;
     v.x = 300 * dir;
-    this.node.scaleX = dir;
     this.node.getComponent(cc.RigidBody).linearVelocity = v;
+
+    if (this.direction == dir) {
+      return;
+    }
+
+    this.direction = dir;
+
+    if (dir == 1) {
+      this.heroAnim.play("hero_right");
+    } else if (dir == -1) {
+      this.heroAnim.play("hero_left");
+    }
+  },
+  on_player_stop: function on_player_stop() {
+    //有自由落体时停止行走
+    if (this.input_control == -1) {
+      this.heroAnim.stop("hero_left");
+    } else if (this.input_control == 1) {
+      this.heroAnim.stop("hero_right");
+    }
+
+    this.input_control = 0;
+    this.direction = 0;
   },
   on_key_down_1: function on_key_down_1(e) {
     switch (e.keyCode) {
@@ -161,62 +174,53 @@ cc.Class({
   on_key_up_1: function on_key_up_1(e) {
     switch (e.keyCode) {
       case 65:
-        this.input_control = 0;
+        this.on_player_stop();
         break;
 
       case 68:
-        this.input_control = 0;
+        this.on_player_stop();
         break;
     }
   },
   on_key_down: function on_key_down(e) {
-    //w:87  s:83   a:65  d:68  j:74  k:75  l:76  u:85  i:73   o:79  shift:16   l:76   空格：32  q:81
+    //w:87  s:83   a:65  d:68  j:74  k:75  l:76  u:85  i:73   o:79  shift:16   l:76   空格：32  q:81   t:84
     Input[e.keyCode] = 1;
 
     switch (e.keyCode) {
-      case 76:
+      case cc.macro.KEY.l:
         this._speed = this._speed2;
         break;
 
-      case 81:
+      case cc.macro.KEY.q:
+        //q
         game.noticeExit();
-        this.playing = true;
+        this.heroState = State.stand;
         break;
 
-      case 66:
+      case cc.macro.KEY.b:
         //打开或关闭背包
-        this.playing = !this.playing;
-        game.openAndClosePackage(this.node.getPosition());
+        this.heroState = this.heroState == State.stand ? State.noPlay : State.stand;
+        game.openAndClosePackage(this.mycamrea.getPosition());
         break;
+
+      case cc.macro.KEY.t:
+        //关闭对话
+        this.closeTalk();
+        break;
+    }
+  },
+  closeTalk: function closeTalk() {
+    if (cc.find("Canvas/ground/talk")) {
+      this.heroState = State.stand;
+      cc.find("Canvas/ground/talk").destroy();
     }
   },
   on_key_up: function on_key_up(e) {
     //w:87  s:83   a:65  d:68  j:74  k:75  l:76  u:85  i:73   o:79
     Input[e.keyCode] = 0;
-    this.state = '';
 
     switch (e.keyCode) {
-      case 87:
-        //上
-        this.hero_stop();
-        break;
-
-      case 65:
-        //左
-        this.hero_stop();
-        break;
-
-      case 68:
-        //右
-        this.hero_stop();
-        break;
-
-      case 83:
-        //下
-        this.hero_stop();
-        break;
-
-      case 76:
+      case cc.macro.KEY.l:
         this._speed = this._speed1;
         break;
     }
@@ -224,28 +228,65 @@ cc.Class({
   start: function start() {
     this.groundJs = this.groundJsNode.getComponent(this.map);
     this.groundJs.mapCameraNode = this.mycamrea;
-    this.topPosheight = this.top.getPosition().y - this.node.getPosition().y; //界面顶部的top信息，等级，经验，头像等
+    this.talkNum = 0;
   },
   update: function update(dt) {
     if (this.playing) {
       if (cc.director.getPhysicsManager().gravity.y == 0) {
-        if (Input[cc.macro.KEY.d]) {
-          this.sp.x = 1;
-        } else if (Input[cc.macro.KEY.a]) {
-          this.sp.x = -1;
-        } else {
-          this.sp.x = 0;
-        }
-
-        if (Input[cc.macro.KEY.w]) {
-          this.sp.y = 1;
-        } else if (Input[cc.macro.KEY.s]) {
-          this.sp.y = -1;
-        } else {
-          this.sp.y = 0;
-        }
-
+        var anima = this.anima;
         this.lv = this.node.getComponent(cc.RigidBody).linearVelocity;
+
+        switch (this.heroState) {
+          case State.stand:
+            if (Input[cc.macro.KEY.j]) {
+              this.heroState = State.attack;
+            }
+
+            break;
+        }
+
+        if (this.heroState == State.attack) {
+          if (Input[cc.macro.KEY.j]) {
+            if (this.combo == 0) {
+              anima = "hero_right_kit";
+            } // else if(this.combo == 1){     //连击
+            //     anmia = "hero_up_kit";
+            // }else if(this.combo == 2){
+            //     anima = "hero_down_kit";
+            // }
+
+          }
+        }
+
+        if (this.heroState != State.stand) {
+          this.sp.x = 0;
+          this.sp.y = 0;
+        } else {
+          // this.combo = 0;//取消掉连击
+          if (Input[cc.macro.KEY.d]) {
+            this.sp.x = 1;
+            this.sp.y = 0;
+            anima = "hero_right";
+            this.node.scaleX = 1;
+          } else if (Input[cc.macro.KEY.a]) {
+            this.sp.x = -1;
+            this.sp.y = 0;
+            anima = "hero_right";
+            this.node.scaleX = -1;
+          } else if (Input[cc.macro.KEY.w]) {
+            this.sp.y = 1;
+            this.sp.x = 0;
+            anima = "hero_up";
+          } else if (Input[cc.macro.KEY.s]) {
+            this.sp.y = -1;
+            this.sp.x = 0;
+            anima = "hero_down";
+          } else {
+            this.sp.y = 0;
+            this.sp.x = 0;
+            anima = "hero_idle";
+          }
+        }
 
         if (this.sp.x) {
           this.lv.y = 0;
@@ -258,52 +299,15 @@ cc.Class({
           this.lv.x = 0;
         }
 
-        if (!this._kiting) {
-          this.node.getComponent(cc.RigidBody).linearVelocity = this.lv;
-        }
+        this.node.getComponent(cc.RigidBody).linearVelocity = this.lv;
 
-        var pp = new cc.v2(this.node.x, this.node.y + this.topPosheight);
-        this.top.setPosition(pp);
-        var state = '';
-
-        if (this.sp.x == 1) {
-          state = "hero_right";
-        } else if (this.sp.x == -1) {
-          state = "hero_left";
-        } else if (this.sp.y == 1) {
-          state = "hero_up";
-        } else if (this.sp.y == -1) {
-          state = "hero_down";
-        }
-
-        if (state) {
-          this.setState(state);
-        }
-
-        if (state && Input[cc.macro.KEY.j]) {
-          if (!this._kiting) {
-            this._kiting = true;
-            this.heroAnim.play(this.state + "_kit");
-            this.state = '';
-          }
+        if (anima) {
+          this.setState(anima);
         }
       } else {
         if (this.input_control !== 0) {
           this.on_player_walk(this.input_control);
         }
-      }
-    }
-
-    if (this.mycamrea !== null) {
-      this.mycamrea.x = this.node.x; // if(cc.director.getPhysicsManager().gravity.y == 0){
-
-      this.mycamrea.y = this.node.y; // }
-
-      if (this.fagPonint != null && this.rect != null) {// console.log(this.fagPonint);
-        // this.fagPonint.x = this.node.x;
-        // this.fagPonint.y = this.node.y;
-        // this.rect.x = this.node.x;
-        // this.rect.y = this.node.y;
       }
     }
   }

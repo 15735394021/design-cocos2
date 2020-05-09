@@ -17,7 +17,27 @@ cc.Class({
 
   },
   onLoad: function onLoad() {
-    // 使用枚举类型来注册
+    if (this.propName == null) {
+      this.propName = "------";
+    }
+
+    if (this.num == null) {
+      this.num = 0;
+    }
+
+    if (this.addDefense == null) {
+      this.addDefense = "000";
+    }
+
+    if (this.addSpeed == null) {
+      this.addSpeed = "000";
+    }
+
+    if (this.addHurt == null) {
+      this.addHurt = "000";
+    } // 使用枚举类型来注册
+
+
     this.node.on(cc.Node.EventType.MOUSE_ENTER, function (event) {
       //鼠标移入
       this.node.getChildByName("ground").color = new cc.Color(100, 100, 100);
@@ -41,11 +61,7 @@ cc.Class({
         self.node.getChildByName("image").getComponent(cc.Sprite).spriteFrame = spriteFrame;
       }
     });
-
-    if (self.num != null) {
-      self.node.getChildByName("num").getComponent(cc.Label).string = self.num;
-    }
-
+    self.node.getChildByName("num").getComponent(cc.Label).string = self.num;
     self.node.getChildByName("name").getComponent(cc.Label).string = self.propName;
     self.node.getChildByName("content").getComponent(cc.Label).string = "防御+:" + this.addDefense + "\n移动+:" + this.addSpeed + "\n伤害+:" + self.addHurt;
   },

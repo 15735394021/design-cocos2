@@ -23,6 +23,10 @@ cc.Class({
             },
         },
         m_ProImage:cc.Node,
+        run_load:{
+            type:cc.Node,
+            default:null
+        }
 
     },
     ctor:function(){
@@ -57,6 +61,7 @@ cc.Class({
 
     update (dt) {
         if ( this.m_progressIng ){
+            this.run_load.x = -390+this.m_ProImage.width;
 
             if( this.m_ProImage.width < this.m_SetWidth){
                 this.m_ProImage.width += dt*this.m_Speed

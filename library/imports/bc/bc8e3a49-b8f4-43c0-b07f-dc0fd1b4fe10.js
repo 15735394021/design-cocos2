@@ -15,7 +15,6 @@ cc.Class({
     m_AccountLoginPrefab: cc.Prefab,
     m_LoginButton: [cc.Node]
   },
-  // LIFE-CYCLE CALLBACKS:
   onLoad: function onLoad() {
     window.g_welcome = this;
     this.m_Loading = cc.instantiate(this.m_LoadingPrefab);
@@ -56,7 +55,14 @@ cc.Class({
   onText: function onText() {
     this.m_LoginButton[0].zIndex = 100;
   },
-  start: function start() {},
+  start: function start() {
+    if (cc.sys.localStorage.getItem("checkPoint") != null && cc.sys.localStorage.getItem("userId") != null && cc.sys.localStorage.getItem("archivesId") != null) {
+      cc.director.loadScene("game" + cc.sys.localStorage.getItem("checkPoint"));
+    } // if(cc.sys.localStorage.getItem("userId") != null){
+    //     cc.director.loadScene("archives");
+    // }
+
+  },
   update: function update(dt) {}
 });
 
